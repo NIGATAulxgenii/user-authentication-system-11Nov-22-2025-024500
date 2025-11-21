@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Interactive Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        h1 {
+            color: #007bff;
+            margin-bottom: 20px;
+        }
+        button {
+            padding: 12px 25px;
+            font-size: 18px;
+            cursor: pointer;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+        button:hover {
+            background-color: #218838;
+            transform: translateY(-2px);
+        }
+        button:active {
+            background-color: #1e7e34;
+            transform: translateY(0);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <h1 id="main-heading">Welcome, Developer!</h1>
+    <button id="actionButton">Start Interaction</button>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const heading = document.getElementById('main-heading');
+            const button = document.getElementById('actionButton');
+            let counter = 0;
+
+            button.addEventListener('click', function() {
+                counter++;
+                if (counter === 1) {
+                    heading.textContent = 'You clicked the button!';
+                    button.textContent = `Click again (${counter})!`;
+                } else if (counter < 5) {
+                    heading.textContent = `You've clicked ${counter} times!`;
+                    button.textContent = `Keep going (${counter})!`;
+                } else {
+                    heading.textContent = 'Great job! Interaction complete.';
+                    button.textContent = 'Reset';
+                    button.style.backgroundColor = '#dc3545';
+                    counter = 0; // Reset counter after reaching 5 clicks
+                    setTimeout(() => {
+                        heading.textContent = 'Welcome, Developer!';
+                        button.textContent = 'Start Interaction';
+                        button.style.backgroundColor = '#28a745';
+                    }, 2000);
+                }
+            });
+        });
+    </script>
+</body>
+</html>
